@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PersonalInfo from './PersonalInfo';
 import LocationInfo from './LocationInfo';
 import AdditionalInfo from './AdditionalInfo';
-import { createContact } from "./api";
+import { createContact } from "../../../api";
 
 function ContactInformationForm() {
     const [formData, setFormData] = useState({
