@@ -6,7 +6,7 @@ function LocationInfo({ formData, handleChange, formValidated }) {
             <div className="mb-3">
                 <label htmlFor="country" className="form-label">País de residencia *</label>
                 <select
-                    className= {`form-select ${formValidated && !formData.country ? 'is-invalid' : ''}`}
+                    className={`form-select ${formValidated && !formData.country ? 'is-invalid' : ''}`}
                     id="country"
                     name="country"
                     value={formData.country}
@@ -30,7 +30,7 @@ function LocationInfo({ formData, handleChange, formValidated }) {
                     <label htmlFor="otherCountry" className="form-label">Escribe tu país *</label>
                     <input
                         type="text"
-                        className= {`form-control ${formValidated && !formData.otherCountry ? 'is-invalid' : ''}`}
+                        className={`form-control ${formValidated && !formData.otherCountry ? 'is-invalid' : ''}`}
                         id="otherCountry"
                         name="otherCountry"
                         value={formData.otherCountry}

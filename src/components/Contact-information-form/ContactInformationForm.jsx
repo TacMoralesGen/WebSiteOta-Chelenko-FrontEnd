@@ -30,7 +30,7 @@ function ContactInformationForm() {
         let newErrors = {};
 
         if (!formData.name.trim().match(/^[a-zA-Z\s]+$/)) {
-            newErrors.name = 'Por favor, ingresa tu nombre.';
+            newErrors.name = 'Por favor, ingresa tu nombre solo con letras.';
         }
         if (!formData.email.includes('@')) {
             newErrors.email = 'Por favor, ingresa un correo válido.';
@@ -98,7 +98,7 @@ function ContactInformationForm() {
                             onSubmit={handleSubmit}
                         >
                             <PersonalInfo formData={formData} handleChange={handleChange} errors={errors} />
-                            <LocationInfo formData={formData} handleChange={handleChange} />
+                            <LocationInfo formData={formData} handleChange={handleChange} formValidated={isSubmitted} />
                             <AdditionalInfo formData={formData} handleChange={handleChange} />
 
                             <div className="form-check mb-3">

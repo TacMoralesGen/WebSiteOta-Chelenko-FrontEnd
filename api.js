@@ -1,9 +1,9 @@
-const API_URL = "http://localhost:8080"; // Asegúrate de que este puerto sea el correcto para tu backend
+const API_URL = "http://localhost:3000/contacto"; // Asegúrate de que este puerto sea el correcto para tu backend
 
 // Función para crear un nuevo contacto (POST)
 const createContact = async (formData) => {
     try {
-        const response = await fetch(`${API_URL}/contacto`, {
+        const response = await fetch(`${API_URL}`, {
             method: "POST", // Método HTTP: POST (para crear recursos)
             headers: {
                 "Content-Type": "application/json", // Se indica que los datos que se envían son en formato JSON
