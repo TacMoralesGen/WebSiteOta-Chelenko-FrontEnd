@@ -14,20 +14,6 @@ function AdditionalInfo({ formData, handleChange }) {
                 ></textarea>
             </div>
 
-            <div className="form-check mb-3">
-                <input
-                    type="checkbox"
-                    id="terminos"
-                    name="terminos"
-                    className="form-check-input"
-                    checked={formData.terms}
-                    onChange={handleChange}
-                    required
-                />
-                <label className="form-check-label" htmlFor="terminos">
-                    He leído y acepto los términos & condiciones
-                </label>
-            </div>
         </>
     );
 }

@@ -3,6 +3,7 @@ import "./customBootstrap.css";
 import Home from "./views/Home/Home.jsx";
 import Checkout from "./views/Checkout/Checkout.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ContactInformationForm from "./components/Contact-information-form/ContactInformationForm.jsx";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -13,6 +14,10 @@ const App = () => {
     {
       path: '/checkout',
       element: <Checkout />
+    },
+    {
+      path: '/contactForm',
+      element: <ContactInformationForm />
     }
   ])
   return (

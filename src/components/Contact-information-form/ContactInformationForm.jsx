@@ -4,7 +4,6 @@ import PersonalInfo from './PersonalInfo';
 import LocationInfo from './LocationInfo';
 import AdditionalInfo from './AdditionalInfo';
 
-
 function ContactInformationForm() {
     const [formData, setFormData] = useState({
         name: '',
@@ -16,7 +15,8 @@ function ContactInformationForm() {
         terms: false,
     });
 
-    const [isValid, setIsValid] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
@@ -27,20 +27,34 @@ function ContactInformationForm() {
     };
 
     const validateForm = () => {
-        const nameRange = /^[a-zA-Z\s]+$/;
-        const phoneRange = /^[0-9]+$/;
-        const isNameValid = nameRange.test(formData.name);
-        const isPhoneValid = phoneRange.test(formData.phone);
-        setIsValid(isNameValid && isPhoneValid && formData.terms);
+        let newErrors = {};
+
+        if (!formData.name.trim()) {
+            newErrors.name = 'Por favor, ingresa tu nombre.';
+        }
+        if (!formData.email.includes('@')) {
+            newErrors.email = 'Por favor, ingresa un correo válido.';
+        }
+        if (!formData.phone.match(/^[0-9]+$/)) {
+            newErrors.phone = 'El teléfono debe contener solo números.';
+        }
+        if (!formData.terms) {
+            newErrors.terms = 'Debes aceptar los términos y condiciones.';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0; // Devuelve `true` si no hay errores
     };
 
     useEffect(() => {
-        validateForm();
-    }, [formData]);
+        if (isSubmitted) validateForm();
+    }, [formData, isSubmitted]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (isValid) {
+        setIsSubmitted(true);
+
+        if (validateForm()) {
             alert('Formulario enviado con éxito');
             setFormData({
                 name: '',
@@ -51,6 +65,7 @@ function ContactInformationForm() {
                 message: '',
                 terms: false,
             });
+            setIsSubmitted(false);
         }
     };
 
@@ -60,11 +75,33 @@ function ContactInformationForm() {
                 <div className="col-md-8">
                     <div className="card p-4">
                         <h1 className="mb-4">Datos de contacto</h1>
-                        <form id="contactForm" className="needs-validation" noValidate onSubmit={handleSubmit}>
-                            <PersonalInfo formData={formData} handleChange={handleChange} />
+                        <form
+                            id="contactForm"
+                            className={`needs-validation ${isSubmitted ? 'was-validated' : ''}`}
+                            noValidate
+                            onSubmit={handleSubmit}
+                        >
+                            <PersonalInfo formData={formData} handleChange={handleChange} errors={errors} />
                             <LocationInfo formData={formData} handleChange={handleChange} />
                             <AdditionalInfo formData={formData} handleChange={handleChange} />
-                            <button type="submit" className="btn btn-success w-100" disabled={!isValid}>
+
+                            <div className="form-check mb-3">
+                                <input
+                                    type="checkbox"
+                                    id="terminos"
+                                    name="terms"
+                                    className={`form-check-input ${errors.terms ? 'is-invalid' : ''}`}
+                                    checked={formData.terms}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                <label className="form-check-label" htmlFor="terminos">
+                                    He leído y acepto los términos & condiciones
+                                </label>
+                                {errors.terms && <div className="invalid-feedback">{errors.terms}</div>}
+                            </div>
+
+                            <button type="submit" className="btn btn-success w-100">
                                 Enviar
                             </button>
                         </form>
