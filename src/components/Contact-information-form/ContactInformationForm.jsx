@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PersonalInfo from './PersonalInfo';
 import LocationInfo from './LocationInfo';
 import AdditionalInfo from './AdditionalInfo';
+import { createContact } from "./api";
 
 function ContactInformationForm() {
     const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ function ContactInformationForm() {
     const validateForm = () => {
         let newErrors = {};
 
-        if (!formData.name.trim()) {
+        if (!formData.name.trim().match(/^[a-zA-Z\s]+$/)) {
             newErrors.name = 'Por favor, ingresa tu nombre.';
         }
         if (!formData.email.includes('@')) {
