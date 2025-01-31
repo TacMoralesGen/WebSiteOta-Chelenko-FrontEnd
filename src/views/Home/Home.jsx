@@ -4,12 +4,12 @@ import Navbar from "../../components/Header/Navbar/Navbar";
 import SectionImgTxt from "../../components/Section-img-txt/Section_img_txt";
 import SectionImgTxtLn from "../../components/Section-img-txt-ln/Section_img_txt_ln";
 import img2 from "../../assets/images/img-2.jpg";
-import img3 from "../../assets/images/img-3.jpg"; 
-
+import img3 from "../../assets/images/img-3.jpg";
+import Footer from "../../components/Footer/Footer";
 const Home = () => {
   return (
     <>
-      <Navbar isUponBanner={true}/>
+      <Navbar isUponBanner={true} />
       <Banner />
       <SectionImgTxt />
 
@@ -29,8 +29,10 @@ const Home = () => {
         description="Nuestras exclusivas 'Tini Cabins' ubicadas estratégicamente en el Lago General Carrera, le permitirán conectarse consigo mismo de una manera única e inolvidable. <br> Despierte su creatividad y sumérjase en un mundo de posibilidades limitado únicamente con su imaginación."
         btnText="Acerca de la ubicación"
         overlayText="Ubicación"
-        reverse={true}  // 🔄 Invertir la posición de la imagen y el texto
+        reverse={true} // 🔄 Invertir la posición de la imagen y el texto
       />
+
+      <Footer />
     </>
   );
 };
