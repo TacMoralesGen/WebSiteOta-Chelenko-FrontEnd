@@ -13,6 +13,14 @@ const App = () => {
     {
       path: '/reservar',
       element: <Reserve />
+    },
+    {
+      path: '/checkout',
+      element: <Checkout />
+    },
+    {
+      path: '/admin',
+      element: <PanelAdmin />
     }
   ])
   return (
